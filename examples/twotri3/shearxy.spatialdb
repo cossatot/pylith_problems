@@ -1,0 +1,40 @@
+#SPATIAL.ascii 1
+
+// database for BCs for shear displacement example
+
+// Simple DB format
+SimpleDB {
+
+  // two variables in the database, corresponding to the
+  // constraints for the x and y DOFs
+  num-values = 2
+  value-names =  displacement-x  displacement-y
+
+  // Constraint values (displacements) have units of meters
+  value-units =  m  m
+
+  // values are specified at 2 spatial locations (edges)
+  num-locs = 2
+
+  // dimension of spatial distribution is 1, since specs are at points
+  data-dim = 1
+
+  // spatial dimension of DB is 2.
+  space-dim = 2
+
+  // using cartesian coordinate system
+  cs-data = cartesian {
+
+    // units already in m, so we just multiply by one
+    to-meters = 1.0
+
+    // 2d coordinate system
+    space-dim = 2
+  }
+}
+
+// Specify data here.
+// as described in sheardisp.cfg, DB specifies data along edge.
+// x-coord, y-coord, disp-x, disp-y
+-0.5  0.0    0.0  -0.01
++0.5  0.0    0.0  +0.01
