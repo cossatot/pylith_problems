@@ -1,0 +1,37 @@
+5c5
+<   // this is a two-dimensional mesh.
+---
+>   // This is a two-dimensional mesh.
+7c7
+<   
+---
+> 
+10c10,13
+<       
+---
+> 
+>     // The vertices are defined in a 2D coordinate system.
+>     dimension = 2
+> 
+13c16
+<     
+---
+> 
+24,25c27,28
+< 
+<   // Descrone the cells (elements) composing the mesh.
+---
+>   
+>   // Describe the cells (elements) composing the mesh.
+44c47
+<     // DIfferent ID's amy be used to specify a different material type, or
+---
+>     // Different ID's may be used to specify a different material type, or
+57c60
+<   // There are 2 vertives corresponding to indices 1 and 2.
+---
+>   // There are 2 vertices corresponding to indices 1 and 2.
+81c84
+<   // There are two vertices corresponding to indices 0 and 2.
+---
+>   // There are 2 vertices corresponding to indices 0 and 2.
