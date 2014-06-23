@@ -2,21 +2,21 @@ reset
 set default element tet
 
 # create small brick around fault
-brick x 120 y 60 z 30
+brick x 120000 y 60000 z 30000
 
-volume 1 move 0 0 -15.
+volume 1 move 0 0 -15000.
 
-create vertex -60  20  00
-create vertex  60  20  00
-create vertex  60 -20 -30
-create vertex -60 -20 -30
+create vertex -60000  20000  00000
+create vertex  60000  20000  00000
+create vertex  60000 -20000 -30000
+create vertex -60000 -20000 -30000
  
 create surface vertex 9 10 11 12
 surface 7 name "fault_surface"
 
 # create model domain block
-brick x 500 y 240 z 100
-volume 3 move 0 0 -50
+brick x 500000 y 240000 z 100000
+volume 3 move 0 0 -50000
 volume 3 name "domain_vol"
 
 # remove smaller block from larger block
@@ -34,8 +34,8 @@ imprint all
 merge all
 
 #volume 3 size 4    #  define domain tet size
-volume 1 5 size 4 # define tet size near the fault
-surface 26 size 1.5 # define tet size on the fault
+volume 1 5 size 4000 # define tet size near the fault
+surface 26 size 1500.0 # define tet size on the fault
 surface 26 name "fault_surface"
 
 surface  9 name "Dom_ZNeg"
@@ -44,7 +44,7 @@ surface 11 name "Dom_XNeg"
 surface 12 name "Dom_YPos"
 surface 13 name "Dom_XPos"
 
-surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 10
+surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 10000
 
 mesh volume all
 
