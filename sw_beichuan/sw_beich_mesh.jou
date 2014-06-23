@@ -1,0 +1,86 @@
+reset
+set default element tet
+
+# create small brick around fault
+brick x 120 y 60 z 30
+
+volume 1 move 0 0 -15.
+
+create vertex -60  20  00
+create vertex  60  20  00
+create vertex  60 -20 -30
+create vertex -60 -20 -30
+ 
+create surface vertex 9 10 11 12
+surface 7 name "fault_surface"
+
+# create model domain block
+brick x 500 y 240 z 100
+volume 3 move 0 0 -50
+volume 3 name "domain_vol"
+
+# remove smaller block from larger block
+webcut volume 3 tool volume 1
+delete volume 4
+
+# bifurcate fault block with fault
+webcut volume 1 with sheet surface fault_surface
+volume 1 name "fw_vol"
+volume 5 name "hw_vol"
+
+delete body 2 # remove the fault surface
+
+imprint all 
+merge all
+
+volume 3 size 8    #  define domain tet size
+volume 1 5 size 1 # define tet size near the fault
+surface 26 size 0.5 # define tet size on the fault
+surface 26 name "fault_surface"
+
+mesh volume all
+
+
+group "Face_YNeg" add node in surface 10
+group "Face_YPos" add node in surface 12
+group "Face_XNeg" add node in surface 11
+group "Face_XPos" add node in surface 13
+group "Face_ZZero" add node in surface 19 32 27
+group "Face_ZNeg" add node in surface 9
+group "Face_Fault" add node in surface 26
+group "Edge_Fault" add node in curve 55 54 53
+nodeset 1 group Face_XNeg
+nodeset 1 name "Face_XNeg"
+
+nodeset 2 group Face_XPos
+nodeset 2 name "Face_XPos"
+
+nodeset 3 group Face_ZNeg
+nodeset 3 name "Face_ZNeg"
+
+nodeset 4 group Face_ZPos
+nodeset 4 name "Face_ZPos"
+
+nodeset 5 group Face_YNeg
+nodeset 5 name "Face_YNeg"
+
+nodeset 6 group Face_YPos
+nodeset 6 name "Face_YPos"
+
+nodeset 7 group Face_Fault
+nodeset 7 name "Face_Fault"
+
+nodeset 8 group Edge_Fault
+nodeset 8 name "Edge_Fault"
+
+nodeset 5 node in curve in surface 11 13 remove
+nodeset 6 node in curve in surface 11 13 remove
+
+nodeset 3 node in curve in surface 11 13 10 12 26 remove 
+nodeset 4 node in curve in surface 11 13 10 12 26 remove
+
+block 1 volume all 
+
+block 1 name "L1"
+
+export mesh "sw_beich_1km.exo" dimension 3 overwrite

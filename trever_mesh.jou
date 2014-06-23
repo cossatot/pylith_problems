@@ -1,0 +1,69 @@
+reset
+set default element tet
+brick x 5.0 y 10.0 z 5.0  # create a brick which will be bisected by a fault
+volume 1 move 0 0 -2.5 # shift so that the surface is at z=0
+
+create vertex 0 -10  0    # create fault vertices
+create vertex 1 -10  -5
+create vertex 1 10 -5
+create vertex 0 10 0
+create surface vertex 9 10 11 12 # create fault surface
+brick x 200 y 200 z 100 # create the brick spanning the model domain
+volume 3 move 0 0 -50  # shift so that surface is at z=0
+
+webcut volume 3 tool volume 1 # remove the smaller brick from the larger brick
+delete volume 4 # remove the byproduct of 'webcut' 
+webcut volume 1 with sheet surface 7 # split the smaller brick by the fault surface making a volume on either side of the fault
+delete body 2 # remove the fault surface
+
+imprint all 
+merge all
+
+volume 3 size 8    #  define domain tet size
+volume 1 5 size 1 # define tet size near the fault
+surface 26 size 0.5 # define tet size on the fault
+
+mesh volume all
+
+
+group "Face_YNeg" add node in surface 10
+group "Face_YPos" add node in surface 12
+group "Face_XNeg" add node in surface 11
+group "Face_XPos" add node in surface 13
+group "Face_ZZero" add node in surface 19 32 27
+group "Face_ZNeg" add node in surface 9
+group "Face_Fault" add node in surface 26
+group "Edge_Fault" add node in curve 55 54 53
+nodeset 1 group Face_XNeg
+nodeset 1 name "Face_XNeg"
+
+nodeset 2 group Face_XPos
+nodeset 2 name "Face_XPos"
+
+nodeset 3 group Face_ZNeg
+nodeset 3 name "Face_ZNeg"
+
+nodeset 4 group Face_ZZero
+nodeset 4 name "Face_ZZero"
+
+nodeset 5 group Face_YNeg
+nodeset 5 name "Face_YNeg"
+
+nodeset 6 group Face_YPos
+nodeset 6 name "Face_YPos"
+
+nodeset 7 group Face_Fault
+nodeset 7 name "Face_Fault"
+
+nodeset 8 group Edge_Fault
+nodeset 8 name "Edge_Fault"
+
+nodeset 5 node in curve in surface 11 13 remove
+nodeset 6 node in curve in surface 11 13 remove
+
+nodeset 3 node in curve in surface 11 13 10 12 26 remove 
+nodeset 4 node in curve in surface 11 13 10 12 26 remove
+
+block 1 volume all 
+
+block 1 name "L1"
