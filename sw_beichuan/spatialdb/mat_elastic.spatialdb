@@ -10,7 +10,7 @@ SimpleDB {
   data-dim = 0
   space-dim = 3
   cs-data = cartesian {
-    to-meters = 1.0e+3 // Coordinates in km, matters? params uniform.
+    to-meters = 1.0 // Coordinates in km, matters? params uniform.
     space-dim = 3
   }
 }

@@ -33,10 +33,18 @@ delete body 2 # remove the fault surface
 imprint all 
 merge all
 
-volume 3 size 8    #  define domain tet size
-volume 1 5 size 1 # define tet size near the fault
-surface 26 size 0.5 # define tet size on the fault
+#volume 3 size 4    #  define domain tet size
+volume 1 5 size 4 # define tet size near the fault
+surface 26 size 1.5 # define tet size on the fault
 surface 26 name "fault_surface"
+
+surface  9 name "Dom_ZNeg"
+surface 10 name "Dom_YNeg"
+surface 11 name "Dom_XNeg"
+surface 12 name "Dom_YPos"
+surface 13 name "Dom_XPos"
+
+surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 10
 
 mesh volume all
 
@@ -45,7 +53,7 @@ group "Face_YNeg" add node in surface 10
 group "Face_YPos" add node in surface 12
 group "Face_XNeg" add node in surface 11
 group "Face_XPos" add node in surface 13
-group "Face_ZZero" add node in surface 19 32 27
+group "Face_ZPos" add node in surface 19 32 27
 group "Face_ZNeg" add node in surface 9
 group "Face_Fault" add node in surface 26
 group "Edge_Fault" add node in curve 55 54 53
