@@ -7,7 +7,7 @@
 #SPATIAL.ascii 1
 SimpleDB {
   num-values = 3
-  value-names =  traction-shear-horiz traction-shear-vert traction-normal
+  value-names =  traction-shear-leftlateral traction-shear-updip traction-normal
   value-units =  Pa Pa Pa
   num-locs = 1
   data-dim = 0 // location is a single point
