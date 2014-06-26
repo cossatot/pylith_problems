@@ -1,0 +1,51 @@
+reset
+
+brick x 500000 y 240000 z 100000
+
+
+volume 1 name "domain_vol"
+
+surface 1 name "Dom_ZPos"
+surface  2 name "Dom_ZNeg"
+surface 3 name "Dom_YNeg"
+surface 4 name "Dom_XNeg"
+surface 5 name "Dom_YPos"
+surface 6 name "Dom_XPos"
+
+surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 10000
+
+mesh volume all
+
+group "Face_ZPos" add node in surface 1
+group "Face_ZNeg" add node in surface 2
+group "Face_YNeg" add node in surface 3
+group "Face_XNeg" add node in surface 4
+group "Face_YPos" add node in surface 5
+group "Face_XPos" add node in surface 6
+
+
+nodeset 7 group Face_XNeg
+nodeset 7 name "Face_XNeg"
+
+nodeset 2 group Face_XPos
+nodeset 2 name "Face_XPos"
+
+nodeset 3 group Face_ZNeg
+nodeset 3 name "Face_ZNeg"
+
+nodeset 4 group Face_ZPos
+nodeset 4 name "Face_ZPos"
+
+nodeset 5 group Face_YNeg
+nodeset 5 name "Face_YNeg"
+
+nodeset 6 group Face_YPos
+nodeset 6 name "Face_YPos"
+
+
+
+block 1 volume all
+
+block 1 name "L1"
+
+export mesh "sw_beich_nofault_1000m.exo" dimension 3 overwrite

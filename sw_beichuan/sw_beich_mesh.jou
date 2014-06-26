@@ -56,7 +56,7 @@ group "Face_XPos" add node in surface 13
 group "Face_ZPos" add node in surface 19 32 27
 group "Face_ZNeg" add node in surface 9
 group "Face_Fault" add node in surface 26
-group "Edge_Fault" add node in curve 55 54 53
+group "Edge_Fault" add node in curve 55 54 56
 nodeset 1 group Face_XNeg
 nodeset 1 name "Face_XNeg"
 
@@ -92,3 +92,4 @@ block 1 volume all
 block 1 name "L1"
 
 export mesh "sw_beich_1km.exo" dimension 3 overwrite
+
