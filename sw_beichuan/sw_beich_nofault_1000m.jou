@@ -1,5 +1,5 @@
 reset
-
+set default element tet
 brick x 500000 y 240000 z 100000
 
 
