@@ -24,4 +24,4 @@ SimpleDB {
 // (4) T-shear-horiz (Pa)
 // (5) T-shear-vert (Pa)
 // (6) T-normal (Pa)
-0.0  0.0  0.0   -10.0e6  1.0e6  -9.5e6   
+0.0  0.0  0.0   0.0  1.0e7  -3.5e6   

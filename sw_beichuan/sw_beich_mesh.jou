@@ -15,7 +15,7 @@ create surface vertex 9 10 11 12
 surface 7 name "fault_surface"
 
 # create model domain block
-brick x 500000 y 240000 z 100000
+brick x 1500000 y 720000 z 100000
 volume 3 move 0 0 -50000
 volume 3 name "domain_vol"
 
@@ -44,7 +44,7 @@ surface 11 name "Dom_XNeg"
 surface 12 name "Dom_YPos"
 surface 13 name "Dom_XPos"
 
-surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 10000
+surface Dom_ZNeg Dom_YNeg Dom_XNeg Dom_YPos Dom_XPos size 30000
 
 mesh volume all
 
@@ -93,4 +93,5 @@ block 1 volume all
 block 1 name "L1"
 
 export mesh "sw_beich_1km.exo" dimension 3 overwrite
+
 
